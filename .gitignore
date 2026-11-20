@@ -1,0 +1,38 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+dist/
+api/generated/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+analytics/.venv/
+*.egg-info/
+.pytest_cache/
+
+# Build
+client/dist/
+client/.vite/
+
+# Eval results (auto-generated; template committed)
+eval/results/*.json
+eval/results/*.md
+!eval/results/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+postgres_data/
+
+# Legacy hackathon archives
+legacy/

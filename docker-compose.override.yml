@@ -1,0 +1,26 @@
+# docker-compose.override.yml — dev mounts + hot-reload (not for production)
+services:
+  api:
+    build:
+      target: dev
+    volumes:
+      - ./api/src:/app/src:ro
+      - ./api/prisma:/app/prisma:ro
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://graphops:graphops@postgres:5432/graphops?schema=public
+    command: ["npm", "run", "dev"]
+
+  analytics:
+    volumes:
+      - ./analytics/app:/app/app:ro
+    command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+
+  client:
+    build:
+      target: dev
+    volumes:
+      - ./client/src:/app/src:ro
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    ports:
+      - "5173:5173"
